@@ -1,0 +1,71 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+
+# Folders
+_vendor/
+dist/
+bin/
+release/
+out/
+
+# Go binary
+main
+
+# Dependency directories
+vendor/
+Godeps/
+.vscode/
+
+# Compiled Go files
+*.test
+*.prof
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
+.glide/
+
+# File-based database
+*.db
+
+# Log files and temporary files
+*.log
+*.log.*
+*.swp
+*~
+
+# macOS temporary files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# JetBrains GoLand
+.idea/
+*.iml
+
+# Visual Studio Code
+.vscode/
