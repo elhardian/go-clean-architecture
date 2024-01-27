@@ -2,7 +2,10 @@
 
 package database
 
-import "github.com/elhardian/go-clean-architecture/libs/config"
+import (
+	"github.com/elhardian/go-clean-architecture/libs/config"
+	_ "github.com/lib/pq"
+)
 
 type PostgreSQL struct {
 	*Options

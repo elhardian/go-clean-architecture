@@ -1,4 +1,4 @@
-package jsonHelper
+package response
 
 import (
 	"encoding/json"
@@ -17,12 +17,12 @@ func WriteJSON(w http.ResponseWriter, code int, v interface{}) error {
 }
 
 // Return JSON When Response Is Success
-func SuccessResponse(w http.ResponseWriter, status bool, code string, data interface{}, pagination *paginationHelper.Page) {
+func OnSuccess(w http.ResponseWriter, status bool, code string, data interface{}, pagination *paginationHelper.Page) {
 	if code == "" {
 		code = "OK"
 	}
 
-	res := &response{
+	res := &Response{
 		Status:     status,
 		StatusCode: http.StatusOK,
 		Message:    "Success",
@@ -35,8 +35,8 @@ func SuccessResponse(w http.ResponseWriter, status bool, code string, data inter
 }
 
 // Return JSON When Response Is Failed
-func ErrorResponse(w http.ResponseWriter, status bool, statusCode int, message interface{}, code string) {
-	res := &response{
+func OnError(w http.ResponseWriter, status bool, statusCode int, message interface{}, code string) {
+	res := &Response{
 		Status:     status,
 		StatusCode: statusCode,
 		Message:    message,

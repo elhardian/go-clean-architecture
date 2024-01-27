@@ -10,17 +10,22 @@ import (
 
 	"github.com/elhardian/go-clean-architecture/libs/config"
 	"github.com/gorilla/handlers"
+	"github.com/gorilla/mux"
 )
 
 type Server struct {
-	http *http.Server
+	http   *http.Server
+	Router *mux.Router
 }
 
 func NewServer(cfg *config.Config) *Server {
+	r := mux.NewRouter()
+
 	return &Server{
 		http: &http.Server{
 			Addr: cfg.AppPort,
 		},
+		Router: r,
 	}
 }
 
