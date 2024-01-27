@@ -25,9 +25,13 @@ It's might be usefull to know that libraries that I've used on this Project:
     ```
 
 3. Setup The Project 
-    Setup project is includes `install dependencies` and `run migrations`
+    Setup project is includes `install dependencies` and `run migrations`. 
     ```bash
     make setup
+    ```
+    by default, above command is using your `libs/config/local.env`. If you need to setup other env, You must define arguments `ENV`, so the command will looks like this:
+    ```bash
+    make ENV=dev setup
     ```
 
 ## Usage
