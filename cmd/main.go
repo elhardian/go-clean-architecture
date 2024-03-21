@@ -16,7 +16,6 @@ func run() error {
 	if err != nil {
 		return err
 	}
-
 	// app config
 	tzLocation, err := time.LoadLocation(mgr.GetConfig().AppTz)
 	if err != nil {
