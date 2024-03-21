@@ -1,0 +1,50 @@
+name: Create Release Tag
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '*.md'
+      - '.gitignore'
+
+jobs:
+  versioning:
+    runs-on: [ubuntu-latest]
+    steps:
+      - name: "Checkout ${{ github.ref_type }} ${{ github.ref_name }}"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Release Time
+        id: settime
+        run: echo "RELEASE_TIME=$(TZ=Asia/Singapore date +'%Y-%m-%d %H:%M %Z')" >> $GITHUB_ENV
+
+      - name: Versioning
+        id: versioning
+        uses: paulhatch/semantic-version@v5.0.2
+        with:
+          branch: ${{ github.ref_name }}
+          tag_prefix: ""
+          major_pattern: "major:"
+          minor_pattern: "feat:"
+          version_format: "${major}.${minor}.${patch}"
+          bump_each_commit: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+
+      - name: "Publish Release tag ${{ steps.versioning.outputs.version }}"
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        with:
+          target_commitish: ${{ github.ref_name }}
+          tag_name: ${{ steps.versioning.outputs.version }}
+          name: "v${{ steps.versioning.outputs.version }}"
+          body: "### ${{ env.RELEASE_TIME }}\n"
+          prerelease: true
+          generate_release_notes: true
