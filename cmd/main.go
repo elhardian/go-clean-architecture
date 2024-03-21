@@ -22,7 +22,6 @@ func run() error {
 		return err
 	}
 	time.Local = tzLocation
-
 	// server config
 	server := server.NewServer(mgr.GetConfig())
 
