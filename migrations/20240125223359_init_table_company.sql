@@ -12,7 +12,7 @@ INSERT INTO customers (email, password, name)
 VALUES
     ('ivan', '12345', 'Ivan Ivanovich'),
     ('petr', '54321', 'Petr Petrovich');
-
+ 
 COMMIT;
 
 -- +goose Down
